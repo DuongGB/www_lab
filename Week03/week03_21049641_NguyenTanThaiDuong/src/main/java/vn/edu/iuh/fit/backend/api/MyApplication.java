@@ -7,6 +7,7 @@
 package vn.edu.iuh.fit.backend.api;
 
 import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
 
 /*
  * @description:
@@ -15,6 +16,6 @@ import jakarta.ws.rs.ApplicationPath;
  * @version:    1.0
  */
 @ApplicationPath("/api")
-public class MyApplication {
+public class MyApplication extends Application {
 }
 

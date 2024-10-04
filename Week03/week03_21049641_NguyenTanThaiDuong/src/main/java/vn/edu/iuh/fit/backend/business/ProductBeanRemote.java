@@ -6,6 +6,12 @@
 
 package vn.edu.iuh.fit.backend.business;
 
+import jakarta.ejb.Local;
+import jakarta.ejb.Remote;
+import vn.edu.iuh.fit.backend.repositories.entities.Product;
+
+import java.util.List;
+
 /*
  * @description:
  * @author: Nguyen Tan Thai Duong
@@ -13,7 +19,12 @@ package vn.edu.iuh.fit.backend.business;
  * @version:    1.0
  */
 // Đánh dấu đây là một interface remote
+@Remote
 public interface ProductBeanRemote {
+    List<Product> getAll();
 
+    void add(Product product);
+
+    Product getById(int id);
 }
 

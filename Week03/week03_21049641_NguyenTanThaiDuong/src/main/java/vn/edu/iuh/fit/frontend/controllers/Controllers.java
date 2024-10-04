@@ -6,8 +6,16 @@
 
 package vn.edu.iuh.fit.frontend.controllers;
 
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.iuh.fit.backend.repositories.entities.Product;
+import vn.edu.iuh.fit.frontend.models.ProductModel;
+
+import java.io.IOException;
 
 /*
  * @description:
@@ -16,8 +24,30 @@ import jakarta.servlet.http.HttpServlet;
  * @version:    1.0
  */
 // Đánh dấu đây là một controller servlet để xử lý các request từ client gửi lên
-@WebServlet(name = "Controllers", urlPatterns = {"/controller"})
+@WebServlet(name = "Controllers", value = "/controller")
 public class Controllers extends HttpServlet {
 
+    @Inject
+    private ProductModel productModel;
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+        System.out.println("Action: " + action);
+        if (action.equals("add")) {
+            String name = req.getParameter("product_name");
+            String description = req.getParameter("product_description");
+            String imgPath = req.getParameter("img_path");
+            Product product = new Product(name, description, imgPath);
+            productModel.createProduct(product);
+            resp.sendRedirect("index.jsp");
+        }
+
+    }
 }
 

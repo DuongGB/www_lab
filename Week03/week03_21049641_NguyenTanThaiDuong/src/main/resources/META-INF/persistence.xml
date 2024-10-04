@@ -3,7 +3,9 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
-    <persistence-unit name="default">
-
+    <persistence-unit name="week3_21049641" >
+        <jta-data-source>jdbc/_week3</jta-data-source>
+        <class>vn.edu.iuh.fit.backend.repositories.entities.Product</class>
+        <class>vn.edu.iuh.fit.backend.repositories.entities.ProductPrice</class>
     </persistence-unit>
 </persistence>

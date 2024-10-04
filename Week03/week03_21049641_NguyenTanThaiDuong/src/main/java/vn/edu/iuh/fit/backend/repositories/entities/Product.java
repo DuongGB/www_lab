@@ -4,9 +4,16 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 @Entity
 @Table(name = "product")
-public class Product {
+@NamedQueries({
+        @NamedQuery(name = "Product.findAll", query = "select p from Product p"),
+        @NamedQuery(name = "Product.findById", query = "select p from Product p where p.id = :id")
+})
+public class Product implements Serializable {
     @Id
     @Column(name = "product_id", nullable = false)
     private Integer id;
@@ -24,6 +31,29 @@ public class Product {
     @Size(max = 250)
     @Column(name = "img_path", length = 250)
     private String imgPath;
+
+    public Product(String name, String description, String imgPath) {
+        this.name = name;
+        this.description = description;
+        this.imgPath = imgPath;
+    }
+
+    public Product() {
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 
     public Integer getId() {
         return id;

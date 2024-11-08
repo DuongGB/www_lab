@@ -1,5 +1,5 @@
 /*
- * @ {#} ProductResource.java   1.0     10/4/2024
+ * @ {#} ProductResource.java   1.0     10/10/2024
  *
  * Copyright (c) 2024 IUH. All rights reserved.
  */
@@ -16,24 +16,27 @@ import vn.edu.iuh.fit.backend.repositories.entities.Product;
 /*
  * @description:
  * @author: Nguyen Tan Thai Duong
- * @date:   10/4/2024
+ * @date:   10/10/2024
  * @version:    1.0
  */
-//Dùng để đánh dấu đây là một đối tượng tài nguyên của API RESTful
+// TODO: Add the necessary annotations to make this class a RESTful web service
 @Path("/products")
 public class ProductResource {
     @EJB
-    private ProductBeanRemote productBeanRemote;
+    private ProductBeanRemote productBean;
 
     @GET
+    @Produces("application/json")
     public Response getAll() {
-        return Response.status(Response.Status.OK).entity(productBeanRemote.getAll()).build();
+        return Response.ok(productBean.getAll()).build();
     }
 
     @GET
+    @Consumes("application/json")
+    @Produces("application/json")
     @Path("/{id}")
-    public Response getById(@PathParam("id") int id) {
-        return Response.status(Response.Status.OK).entity(productBeanRemote.getById(id)).build();
+    public Response getById(int id) {
+        return Response.ok(productBean.getById(id)).build();
     }
 
     @POST
@@ -41,9 +44,8 @@ public class ProductResource {
     @Produces("application/json")
     @Transactional
     public Response add(Product product) {
-        productBeanRemote.add(product);
-        return Response.ok(product).build();
+        productBean.add(product);
+        return Response.ok().build();
     }
-
 }
 

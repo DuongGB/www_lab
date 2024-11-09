@@ -41,7 +41,6 @@
       <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/add.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
     </list>
@@ -99,6 +98,7 @@
     &quot;Tomcat Server.Tomcat 10.1.24.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ADMIN/OneDrive/Máy tính/WWW/Week01&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -229,6 +229,13 @@
       <workItem from="1727875356524" duration="8528000" />
       <workItem from="1727933868243" duration="5384000" />
       <workItem from="1727945284356" duration="229000" />
+      <workItem from="1727956568070" duration="244000" />
+      <workItem from="1729684213324" duration="1468000" />
+      <workItem from="1729688516522" duration="1549000" />
+      <workItem from="1729756649840" duration="168000" />
+      <workItem from="1729759058218" duration="474000" />
+      <workItem from="1729760802942" duration="65000" />
+      <workItem from="1730555114223" duration="465000" />
     </task>
     <servers />
   </component>

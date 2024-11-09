@@ -44,6 +44,10 @@ public class Account {
         this.status = b;
     }
 
+    public Account() {
+
+    }
+
     public String getAccountId() {
         return accountId;
     }

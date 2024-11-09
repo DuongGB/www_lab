@@ -4,11 +4,11 @@
 
 -   Gồm 4 package:
 
-*   controllers: dùng xử lý yêu cầu người dùng, tương tác với model và chọn view hiển thị
+## 1.**controllers**: dùng xử lý yêu cầu người dùng, tương tác với model và chọn view hiển thị
 
 -   ControllerServlet
 
-*   entities: chứa các entity
+## 2.**entities**: chứa các entity
 
 -   Account (accountId, fullName, password, email, phone, status)
 -   GrantAccess (role, account, isGrant, note)
@@ -16,14 +16,14 @@
 -   Log (id, accountId, loginTime, logoutTime, notes)
 -   Role (roleId, roleName, description, status)
 
-*   repositories: dùng nối lớp model và cơ sở dữ liệu, cung cấp các phương thức thực hiện từ cơ sở dữ liệu
+## 3.**repositories**: dùng nối lớp model và cơ sở dữ liệu, cung cấp các phương thức thực hiện từ cơ sở dữ liệu
 
 -   AccountRepository
 -   GrantAccessRepository
 -   LogRepository
 -   RoleRepository
 
-*   services: chứa logic nghiệp vụ, trung gian giữa controllers và repositories
+## 4.**services**: chứa logic nghiệp vụ, trung gian giữa controllers và repositories
 
 -   AccountService
 -   RoleService

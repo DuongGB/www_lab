@@ -46,10 +46,10 @@ public class CandidateController {
                                           @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
-        Page<Candidate> candidatePage= candidateService.findAll(
-                currentPage - 1,pageSize,"id","asc");
+        Page<Candidate> candidatePage = candidateService.findAll(
+                currentPage - 1, pageSize, "id", "asc");
         model.addAttribute("candidatePage", candidatePage);
-        int totalPages = ((org.springframework.data.domain.Page<?>) candidatePage).getTotalPages();
+        int totalPages = (candidatePage).getTotalPages();
         if (totalPages > 0) {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
                     .boxed()

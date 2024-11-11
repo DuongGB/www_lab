@@ -4,10 +4,12 @@ import com.neovisionaries.i18n.CountryCode;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "address")
 public class Address {
     @Id
@@ -40,5 +42,9 @@ public class Address {
         this.city = city;
         this.zipcode = zipcode;
         this.country = countryCode;
+    }
+
+    public String getFullAddress() {
+        return String.format("%s %s, %s, %s, %s", number, street, city, country.getName(), zipcode);
     }
 }

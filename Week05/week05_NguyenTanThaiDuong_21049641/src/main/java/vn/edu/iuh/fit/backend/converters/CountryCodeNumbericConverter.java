@@ -16,6 +16,7 @@ import jakarta.persistence.Converter;
  * @date:   11/9/2024
  * @version:    1.0
  */
+// Dùng để chuyển đổi giữa kiểu dữ liệu CountryCode và kiểu dữ liệu Integer
 @Converter(autoApply = true)
 public class CountryCodeNumbericConverter implements AttributeConverter<CountryCode, Integer> {
     @Override

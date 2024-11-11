@@ -19,6 +19,7 @@ import java.util.List;
  */
 @Getter
 @Setter
+// Dùng để chuyển đổi giữa kiểu dữ liệu Job và kiểu dữ liệu JobDTO để truyền dữ liệu giữa các tầng trong ứng dụng
 public class JobDTO {
     private Long jobId;
     private String jobName;

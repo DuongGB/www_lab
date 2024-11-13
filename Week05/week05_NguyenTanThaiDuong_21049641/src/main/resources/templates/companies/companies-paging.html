@@ -34,6 +34,11 @@
         table th, table td {
             text-align: center;
         }
+
+        .light {
+            color: white;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -47,10 +52,18 @@
         <div class="col-auto">
             <a href="/add-company" class="btn btn-success">Add a new Company</a>
         </div>
+        <div class="col-auto">
+            <form method="get" action="/searchCompanyByName">
+                <div class="input-group">
+                    <input type="text" name="compName" class="form-control" placeholder="Search by name"/>
+                    <button type="submit" class="btn btn-info">Search</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <table class="table table-hover">
-        <thead>
+        <thead class="table-dark">
         <tr>
             <th>ID</th>
             <th>Company About</th>
@@ -72,8 +85,11 @@
             <td th:text="${company.phone}"></td>
             <td th:text="${company.webUrl}"></td>
             <td>
-                <a th:href="@{/edit/{id}(id=${company.id})}">Edit</a> |
-                <a th:href="@{/delete/{id}(id=${company.id})}">Delete</a>
+                <button class="btn btn-success"><a class="light" th:href="@{/edit/{id}(id=${company.id})}">Edit</a>
+                </button>
+                |
+                <button class="btn btn-danger"><a class="light" th:href="@{/delete/{id}(id=${company.id})}">Delete</a>
+                </button>
             </td>
         </tr>
         </tbody>

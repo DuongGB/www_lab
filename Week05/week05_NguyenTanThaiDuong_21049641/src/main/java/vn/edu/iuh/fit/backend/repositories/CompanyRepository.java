@@ -6,6 +6,7 @@
 
 package vn.edu.iuh.fit.backend.repositories;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import vn.edu.iuh.fit.backend.models.Company;
@@ -19,5 +20,7 @@ import java.util.List;
  * @version:    1.0
  */
 @Repository
-public interface CompanyRepository extends JpaRepository<Company,Long> {
+public interface CompanyRepository extends JpaRepository<Company, Long> {
+    List<Company> findByCompNameContaining(String compName);
+    int countByCompName(String compName);
 }

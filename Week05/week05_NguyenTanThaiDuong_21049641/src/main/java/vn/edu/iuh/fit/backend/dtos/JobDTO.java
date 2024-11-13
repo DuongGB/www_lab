@@ -26,15 +26,7 @@ public class JobDTO {
     private String jobName;
     private String jobDesc;
     private Long companyId;
-    private List<Skill> skills;
     private List<Long> skillIds;
-
-    public List<Skill> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<Skill> skills) {
-        this.skills = skills;
-    }
 }
+
 

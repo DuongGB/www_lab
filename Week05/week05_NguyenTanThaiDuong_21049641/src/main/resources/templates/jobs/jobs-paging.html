@@ -34,6 +34,10 @@
     table th, table td {
       text-align: center;
     }
+    .light{
+      color: white;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -45,44 +49,38 @@
       <a href="/" class="btn btn-primary">Back to Home</a>
     </div>
     <div class="col-auto">
-      <a href="/add-company" class="btn btn-success">Add a new Company</a>
+      <a href="/add-company" class="btn btn-success">Add a new Job</a>
     </div>
   </div>
 
   <table class="table table-hover">
-    <thead>
+    <thead class="table-dark">
     <tr>
       <th>ID</th>
-      <th>Company About</th>
-      <th>Company Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Web URL</th>
+      <th>Job Name</th>
+      <th>Job Desc</th>
       <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="company, iStat : ${companyPage.content}"
+    <tr th:each="job, iStat : ${jobPage.content}"
         th:style="${iStat.odd} ? 'font-weight: bold;' : ''"
         th:alt-title="${iStat.even} ? 'even' : 'odd'">
-      <td th:text="${company.id}"></td>
-      <td th:text="${company.about}"></td>
-      <td th:text="${company.compName}"></td>
-      <td th:text="${company.email}"></td>
-      <td th:text="${company.phone}"></td>
-      <td th:text="${company.webUrl}"></td>
+      <td th:text="${job.id}"></td>
+      <td th:text="${job.jobName}"></td>
+      <td th:text="${job.jobDesc}"></td>
       <td>
-        <a th:href="@{/edit/{id}(id=${company.id})}">Edit</a> |
-        <a th:href="@{/delete/{id}(id=${company.id})}">Delete</a>
+        <button class="btn btn-success"><a class="light" th:href="@{/edit/{id}(id=${job.id})}">Edit</a></button> |
+        <button class="btn btn-danger"><a class="light" th:href="@{/delete/{id}(id=${job.id})}">Delete</a></button>
       </td>
     </tr>
     </tbody>
   </table>
 
-  <div class="inline" th:if="${companyPage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
-    <a th:href="@{/companies(size=${companyPage.size}, page=${pageNumber})}"
+  <div class="inline" th:if="${jobPage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/jobs(size=${jobPage.size}, page=${pageNumber})}"
        th:text="${pageNumber}"
-       th:class="${pageNumber == companyPage.number + 1} ? 'active' : ''"></a>
+       th:class="${pageNumber == jobPage.number + 1} ? 'active' : ''"></a>
   </div>
 
   <br/>

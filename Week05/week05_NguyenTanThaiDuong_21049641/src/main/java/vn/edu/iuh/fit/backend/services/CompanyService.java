@@ -42,5 +42,9 @@ public class CompanyService {
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
         return companyRepository.findAll(pageable);
     }
+
+    public List<Company> findCompanyByCompNameContaining(String compName, int pageNo, int pageSize, String sortBy, String sortDirection) {
+        return  companyRepository.findByCompNameContaining(compName);
+    }
 }
 

@@ -14,8 +14,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import vn.edu.iuh.fit.backend.models.Address;
 import vn.edu.iuh.fit.backend.models.Candidate;
+import vn.edu.iuh.fit.backend.models.Company;
+import vn.edu.iuh.fit.backend.models.Job;
 import vn.edu.iuh.fit.backend.repositories.AddressRepository;
 import vn.edu.iuh.fit.backend.repositories.CandidateRepository;
+import vn.edu.iuh.fit.backend.repositories.CompanyRepository;
+import vn.edu.iuh.fit.backend.repositories.JobRepository;
 
 import java.time.LocalDate;
 import java.util.Random;
@@ -33,6 +37,11 @@ public class LabWeek05Application {
     }
 
 //    @Autowired
+//    private CompanyRepository companyRepository;
+//    @Autowired
+//    private JobRepository jobRepository;
+//
+//    @Autowired
 //    private CandidateRepository candidateRepository;
 //    @Autowired
 //    private AddressRepository addressRepository;
@@ -47,6 +56,10 @@ public class LabWeek05Application {
 //                Candidate can = new Candidate("Name #" + i, LocalDate.of(1998, rnd.nextInt(1, 13), rnd.nextInt(1, 29)), add, rnd.nextLong(1111111111L, 9999999999L) + "", "email_" + i + "@gmail.com");
 //                candidateRepository.save(can);
 //                System.out.println("Added: " + can);
+//                Company company = new Company("About #" + i, "email_" + i + "@gmail.com", "Company #" + i, rnd.nextLong(1111111111L, 9999999999L) + "", "http://company" + i + ".com", add);
+//                companyRepository.save(company);
+//                Job job = new Job("Job #" + i, "Software Engineering #" + i, company);
+//                jobRepository.save(job);
 //            }
 //        };
 //    }

@@ -11,6 +11,7 @@ import lombok.Setter;
 public class Job {
     @Id
     @Column(name = "job_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "job_desc", nullable = false, length = 2000)
@@ -23,4 +24,12 @@ public class Job {
     @JoinColumn(name = "company")
     private Company company;
 
+    public Job() {
+    }
+
+    public Job(String jobDesc, String jobName, Company company) {
+        this.jobDesc = jobDesc;
+        this.jobName = jobName;
+        this.company = company;
+    }
 }

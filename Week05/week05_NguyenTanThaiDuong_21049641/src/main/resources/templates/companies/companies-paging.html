@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Candidates with Pagination</title>
+    <title>Companies List with Pagination</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -34,59 +34,55 @@
         table th, table td {
             text-align: center;
         }
-        .light {
-            color: white;
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
-
 <div class="container-fluid">
-    <h1 class="text-center">LIST CANDIDATES</h1>
+    <h1 class="text-center">LIST COMPANIES</h1>
     <!-- Back to Home Button -->
-    <div class="row mb-4 ">
+    <div class="row mb-4">
         <div class="col-auto">
             <a href="/" class="btn btn-primary">Back to Home</a>
         </div>
         <div class="col-auto">
-            <a href="/add-candidate" class="btn btn-success">Add a new Candidate</a>
+            <a href="/add-company" class="btn btn-success">Add a new Company</a>
         </div>
     </div>
+
     <table class="table table-hover">
-        <thead class="table-dark">
+        <thead>
         <tr>
             <th>ID</th>
-            <th>Full Name</th>
-            <th>Date of Birth</th>
-            <th>Address</th>
-            <th>Phone</th>
+            <th>Company About</th>
+            <th>Company Name</th>
             <th>Email</th>
+            <th>Phone</th>
+            <th>Web URL</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="candidate, iStat : ${candidatePage.content}"
+        <tr th:each="company, iStat : ${companyPage.content}"
             th:style="${iStat.odd} ? 'font-weight: bold;' : ''"
             th:alt-title="${iStat.even} ? 'even' : 'odd'">
-            <td th:text="${candidate.id}"></td>
-            <td th:text="${candidate.fullName}"></td>
-            <td th:text="${candidate.dob}"></td>
-            <td th:text="${candidate.address}"></td>
-            <td th:text="${candidate.phone}"></td>
-            <td th:text="${candidate.email}"></td>
+            <td th:text="${company.id}"></td>
+            <td th:text="${company.about}"></td>
+            <td th:text="${company.compName}"></td>
+            <td th:text="${company.email}"></td>
+            <td th:text="${company.phone}"></td>
+            <td th:text="${company.webUrl}"></td>
             <td>
-                <button type="button" class="btn btn-success"><a class="light" th:href="@{/edit/{id}(id=${candidate.id})}">Edit</a></button> |
-                <button type="button" class="btn btn-danger"><a class="light" th:href="@{/delete/{id}(id=${candidate.id})}">Delete</a></button>
+                <a th:href="@{/edit/{id}(id=${company.id})}">Edit</a> |
+                <a th:href="@{/delete/{id}(id=${company.id})}">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
 
-    <div class="inline" th:if="${candidatePage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
-        <a th:href="@{/candidates(size=${candidatePage.size}, page=${pageNumber})}"
+    <div class="inline" th:if="${companyPage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/companies(size=${companyPage.size}, page=${pageNumber})}"
            th:text="${pageNumber}"
-           th:class="${pageNumber == candidatePage.number + 1} ? 'active' : ''"></a>
+           th:class="${pageNumber == companyPage.number + 1} ? 'active' : ''"></a>
     </div>
 
     <br/>

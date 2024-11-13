@@ -11,6 +11,7 @@ import lombok.Setter;
 public class Company {
     @Id
     @Column(name = "comp_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "about", length = 2000)
@@ -32,4 +33,15 @@ public class Company {
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
+    public Company() {
+    }
+
+    public Company(String about, String email, String compName, String phone, String webUrl, Address address) {
+        this.about = about;
+        this.email = email;
+        this.compName = compName;
+        this.phone = phone;
+        this.webUrl = webUrl;
+        this.address = address;
+    }
 }

@@ -1,0 +1,52 @@
+/*
+ * @ {#} CompanyController.java   1.0     11/13/2024
+ *
+ * Copyright (c) 2024 IUH. All rights reserved.
+ */
+
+package vn.edu.iuh.fit.frontend.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import vn.edu.iuh.fit.backend.models.Company;
+import vn.edu.iuh.fit.backend.repositories.CompanyRepository;
+import vn.edu.iuh.fit.backend.services.CompanyService;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+
+/*
+ * @description:
+ * @author: Nguyen Tan Thai Duong
+ * @date:   11/13/2024
+ * @version:    1.0
+ */
+@Controller
+public class CompanyController {
+    @Autowired
+    private CompanyRepository companyRepository;
+    @Autowired
+    private CompanyService companyService;
+
+    @GetMapping("/companies")
+    public String showCompanyListPaging(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(10);
+        Page<Company> companyPage = companyService.findAll(currentPage - 1, pageSize, "id", "asc");
+        model.addAttribute("companyPage", companyPage);
+        int totalPages = (companyPage).getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+        return "companies/companies-paging";
+    }
+}
+

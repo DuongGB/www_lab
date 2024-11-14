@@ -1,4 +1,4 @@
-# 🔥Lập trình Web với Java là một phần quan trọng trong việc phát triển các ứng dụng web mạnh mẽ và an toàn, đặc biệt với các ứng dụng doanh nghiệp lớn. Java cung cấp một nền tảng mạnh mẽ, ổn định và giàu công cụ hỗ trợ cho lập trình viên web thông qua nhiều công nghệ khác nhau như Servlets, JSP (JavaServer Pages), và JakartaEE (trước đây là Java EE).<br/><br/>
+## 🔥**Lập trình Web với Java** là một phần quan trọng trong việc phát triển các ứng dụng web mạnh mẽ và an toàn, đặc biệt với các ứng dụng doanh nghiệp lớn. Java cung cấp một nền tảng mạnh mẽ, ổn định và giàu công cụ hỗ trợ cho lập trình viên web thông qua nhiều công nghệ khác nhau như Servlets, JSP (JavaServer Pages), và JakartaEE (trước đây là Java EE).<br/><br/>
 ### 1️⃣. Servlet trong Java:<br/>
 Servlet là một thành phần cơ bản trong lập trình web với Java, là các lớp Java chạy trên máy chủ và phản hồi lại các yêu cầu từ trình duyệt (thường thông qua giao thức HTTP). Một số tính năng chính của Servlet bao gồm:<br/>
   - 👁️Xử lý các yêu cầu HTTP (GET, POST,...).<br/>

@@ -14,13 +14,13 @@
 -   Tích hợp API
 -   Tìm kiếm công việc, skill phù hợp
 
-### [Cài đặt](#cài-đặt):
+### [Công nghệ sử dụng]
 
 -   framework: Spring Boot
 -   Thư viện: thymleaf, lombok
 -   database: mariadb
 -   Ngôn ngữ: Java
--   Các dependencies:
+-   Các dependencies (Gradle):
     `implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -45,6 +45,18 @@ testImplementation 'org.springframework.security:spring-security-test'`
 ### [Cấu trúc thư mục](#cấu-trúc-thư-mục)
 
 ![alt text](image-2.png)
+
+### Minh chứng
+
+#### Trang home
+
+![alt text](image-6.png)
+
+#### Load dữ liệu có phân trang
+
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
 
 ### [Tác giả](#tác-giả)
 

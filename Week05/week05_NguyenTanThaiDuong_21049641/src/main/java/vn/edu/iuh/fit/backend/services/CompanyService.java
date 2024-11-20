@@ -43,8 +43,12 @@ public class CompanyService {
         return companyRepository.findAll(pageable);
     }
 
-    public List<Company> findCompanyByCompNameContaining(String compName, int pageNo, int pageSize, String sortBy, String sortDirection) {
-        return  companyRepository.findByCompNameContaining(compName);
+    public List<Company> findCompanyByCompNameContaining(String compName) {
+        return companyRepository.findByCompNameContaining(compName);
+    }
+
+    public Company findByEmail(String email) {
+        return companyRepository.findByEmail(email).orElse(null);
     }
 }
 

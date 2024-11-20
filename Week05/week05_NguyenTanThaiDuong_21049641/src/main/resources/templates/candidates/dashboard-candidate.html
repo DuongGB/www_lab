@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recommended Jobs</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/9631/9631363.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f9f9f9, #e8ecef);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        h1, h3 {
+            color: #495057;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+        }
+        .card-title a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .card-title a:hover {
+            color: #0056b3;
+        }
+        .btn-primary, .btn-danger {
+            border-radius: 25px;
+            margin: 5px;
+        }
+        .btn-primary:hover, .btn-danger:hover {
+            opacity: 0.85;
+        }
+        .profile-section {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        .alert-warning {
+            margin-top: 30px;
+        }
+        .title{
+            color: #495057;
+            font-weight: bold;
+        }
+        .bgc-primary {
+            background-color: #daf4ff;
+        }
+        .bgc-secondary {
+            background-color: #51a7bf;
+        }
+    </style>
+</head>
+<body>
+<div class="bgc-container container mt-5">
+    <div class="bgc-primary profile-section text-center mb-5">
+        <h1 class="title">Welcome, <span th:text="${candidate.fullName}"></span></h1>
+        <div class="mt-4">
+            <button class="btn btn-primary">Edit Profile</button>
+            <a class="btn btn-primary"
+               th:href="@{/skills/recommend/{candidateId}(candidateId=${candidate.id})}">
+                Skill Recommendations
+            </a>
+            <a class="btn btn-danger" th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+    <h3 class="text-center">Job Recommendations</h3>
+
+    <div  th:if="${#lists.isEmpty(jobs)}" class="bgc-secondary alert alert-warning text-center mt-4">
+        No job recommendations found.
+    </div>
+
+    <div th:if="${!#lists.isEmpty(jobs)}" class="row mt-4">
+        <div th:each="job : ${jobs}" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a th:href="@{/jobs/details/{id}(id=${job.getId()})}" th:text="${job.getJobName()}">Job Name</a>
+                    </h5>
+                    <p class="card-text" th:text="${job.getJobDesc()}">Job Description</p>
+                    <p>
+                        <strong>Company:</strong>
+                        <span th:text="${job.getCompany().getCompName()}">Company Name</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

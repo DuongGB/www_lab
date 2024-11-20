@@ -49,7 +49,12 @@
       <a href="/" class="btn btn-primary">Back to Home</a>
     </div>
     <div class="col-auto">
-      <a href="/add-company" class="btn btn-success">Add a new Job</a>
+      <form method="get" action="/searchJobByJobName">
+        <div class="input-group">
+          <input type="text" name="jobName" class="form-control" placeholder="Search by name"/>
+          <button type="submit" class="btn btn-info">Search</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -59,7 +64,7 @@
       <th>ID</th>
       <th>Job Name</th>
       <th>Job Desc</th>
-      <th>Actions</th>
+<!--      <th>Actions</th>-->
     </tr>
     </thead>
     <tbody>
@@ -69,10 +74,10 @@
       <td th:text="${job.id}"></td>
       <td th:text="${job.jobName}"></td>
       <td th:text="${job.jobDesc}"></td>
-      <td>
-        <button class="btn btn-success"><a class="light" th:href="@{/edit/{id}(id=${job.id})}">Edit</a></button> |
-        <button class="btn btn-danger"><a class="light" th:href="@{/delete/{id}(id=${job.id})}">Delete</a></button>
-      </td>
+<!--      <td>-->
+<!--        <button class="btn btn-success"><a class="light" th:href="@{/edit/{id}(id=${job.id})}">Edit</a></button> |-->
+<!--        <button class="btn btn-danger"><a class="light" th:href="@{/delete/{id}(id=${job.id})}">Delete</a></button>-->
+<!--      </td>-->
     </tr>
     </tbody>
   </table>

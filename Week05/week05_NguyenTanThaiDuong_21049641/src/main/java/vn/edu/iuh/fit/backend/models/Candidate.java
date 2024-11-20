@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,6 +33,8 @@ public class Candidate {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
+    @OneToMany(mappedBy = "can", fetch = FetchType.LAZY)
+    private List<CandidateSkill> candidateSkills = new ArrayList<>();
 
     public Candidate(String fullName, LocalDate dob, Address address, String phone, String email) {
         this.fullName = fullName;

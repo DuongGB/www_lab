@@ -3,6 +3,7 @@ package vn.edu.iuh.fit.backend.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import vn.edu.iuh.fit.backend.ids.CandidateSkillId;
 
 @Getter
 @Setter

@@ -3,8 +3,8 @@
 ## I. Mô tả
 
 **Mô tả:** Đây là một trang web xin việc làm cơ bản, cho phép các công ty đăng tin tuyển người, và các ứng viên khi đăng nhập vào sẽ được gợi ý các công việc phù hợp theo bản thân và có thể gửi mail hay thêm các đề xuất skill cho ứng viên.
-![alt text](image.png)<br/>
-![alt text](image-1.png)
+![alt text](img/image.png)<br/>
+![alt text](img/image-1.png)
 
 ## II. Nội dung
 
@@ -44,19 +44,19 @@ testImplementation 'org.springframework.security:spring-security-test'`
 
 ### [Cấu trúc thư mục](#cấu-trúc-thư-mục)
 
-![alt text](image-2.png)
+![alt text](img/image-2.png)
 
 ### Minh chứng
 
 #### Trang home
 
-![alt text](image-6.png)
+![alt text](img/image-6.png)
 
 #### Load dữ liệu có phân trang
 
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
+![alt text](img/image-3.png)
+![alt text](img/image-4.png)
+![alt text](img/image-5.png)
 
 ### [Tác giả](#tác-giả)
 

@@ -8,9 +8,11 @@ package vn.edu.iuh.fit.frontend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import vn.edu.iuh.fit.backend.models.Candidate;
 import vn.edu.iuh.fit.backend.repositories.CandidateRepository;
@@ -34,7 +36,7 @@ public class CandidateController {
     @Autowired
     private CandidateService candidateService;
 
-    @GetMapping("/list")
+    @GetMapping("/lists")
     public String showCandidateList(Model model) {
         model.addAttribute("candidates", candidateRepository.findAll());
         return "candidates/candidates";
@@ -56,6 +58,15 @@ public class CandidateController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
+        return "candidates/candidates-paging";
+    }
+
+    @GetMapping("/searchCandidateByFullName")
+    public String searchCandidateByFullNameContaining(Model model, String fullName) {
+        List<Candidate> candidates = candidateService.findByNameContaining(fullName);
+        model.addAttribute("candidates", candidates);
+        Page<Candidate> candidatePage = new PageImpl<>(candidates);
+        model.addAttribute("candidatePage", candidatePage);
         return "candidates/candidates-paging";
     }
 }

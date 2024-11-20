@@ -41,28 +41,6 @@ public class JobService {
         return jobRepository.findAll();
     }
 
-    //    public Job save(JobDTO jobDTO) {
-//        Company company = companyRepository.findById(jobDTO.getCompanyId()).orElse(null);
-//        Job job = new Job();
-//        job.setJobName(jobDTO.getJobName());
-//        job.setJobDesc(jobDTO.getJobDesc());
-//        job.setCompany(company);
-//        Job savedJob = jobRepository.save(job);
-//        for (Long skillId : jobDTO.getSkillIds()) {
-//            Skill skill = skillRepository.findById(skillId).orElse(null);
-//            JobSkill jobSkill = new JobSkill();
-//            JobSkillId jobSkillId = new JobSkillId();
-//            jobSkillId.setJobId(savedJob.getId());
-//            jobSkillId.setSkillId(skill.getId());
-//            jobSkill.setId(jobSkillId);
-//            jobSkill.setJob(savedJob);
-//            jobSkill.setSkill(skill);
-//            jobSkill.setSkillLevel((byte) 1);
-//            jobSkill.setMoreInfos("More info");
-//            jobSkillRepository.save(jobSkill);
-//        }
-//        return savedJob;
-//    }
     public Job save(Job job) {
         return jobRepository.save(job);
     }
@@ -76,5 +54,16 @@ public class JobService {
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
         return jobRepository.findAll(pageable);
     }
+
+    public List<Job> findByJobNameContaining(String jobName) {
+        return jobRepository.findByJobNameContaining(jobName);
+    }
+
+    // Tìm các kỹ năng mà ứng viên có dựa trên email, sau đó tìm các công việc mà có ít nhất một trong các kỹ năng đó, trả về danh sách các công việc
+    public List<Job> recommendJobsForCandidate(String email) {
+        return jobRepository.findRecommendedJobsForCandidate(email);
+    }
+
+
 }
 

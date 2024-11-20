@@ -45,6 +45,8 @@ public class Address {
     }
 
     public String getFullAddress() {
-        return String.format("%s %s, %s, %s, %s", number, street, city, country.getName(), zipcode);
+        CountryCode country = this.country;
+        String countryName = (country != null) ? country.getName() : "Unknown Country";
+        return String.format("%s %s, %s, %s, %s", number, street, city, countryName, zipcode);
     }
 }

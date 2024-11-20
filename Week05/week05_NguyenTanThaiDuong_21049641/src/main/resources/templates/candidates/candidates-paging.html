@@ -50,7 +50,12 @@
             <a href="/" class="btn btn-primary">Back to Home</a>
         </div>
         <div class="col-auto">
-            <a href="/add-candidate" class="btn btn-success">Add a new Candidate</a>
+            <form method="get" action="/searchCandidateByFullName">
+                <div class="input-group">
+                    <input type="text" name="fullName" class="form-control" placeholder="Search by name"/>
+                    <button type="submit" class="btn btn-info">Search</button>
+                </div>
+            </form>
         </div>
     </div>
     <table class="table table-hover">
@@ -62,7 +67,7 @@
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>Actions</th>
+<!--            <th>Actions</th>-->
         </tr>
         </thead>
         <tbody>
@@ -72,13 +77,13 @@
             <td th:text="${candidate.id}"></td>
             <td th:text="${candidate.fullName}"></td>
             <td th:text="${candidate.dob}"></td>
-            <td th:text="${candidate.address}"></td>
+            <td th:text="${candidate.address.getFullAddress}"></td>
             <td th:text="${candidate.phone}"></td>
             <td th:text="${candidate.email}"></td>
-            <td>
-                <button type="button" class="btn btn-success"><a class="light" th:href="@{/edit/{id}(id=${candidate.id})}">Edit</a></button> |
-                <button type="button" class="btn btn-danger"><a class="light" th:href="@{/delete/{id}(id=${candidate.id})}">Delete</a></button>
-            </td>
+<!--            <td>-->
+<!--                <button type="button" class="btn btn-success"><a class="light" th:href="@{/edit/{id}(id=${candidate.id})}">Edit</a></button> |-->
+<!--                <button type="button" class="btn btn-danger"><a class="light" th:href="@{/delete/{id}(id=${candidate.id})}">Delete</a></button>-->
+<!--            </td>-->
         </tr>
         </tbody>
     </table>

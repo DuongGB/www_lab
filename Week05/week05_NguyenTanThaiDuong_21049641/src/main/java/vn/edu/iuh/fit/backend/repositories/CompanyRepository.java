@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import vn.edu.iuh.fit.backend.models.Company;
 
 import java.util.List;
+import java.util.Optional;
 
 /*
  * @description:
@@ -22,5 +23,8 @@ import java.util.List;
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
     List<Company> findByCompNameContaining(String compName);
-    int countByCompName(String compName);
+
+    Optional<Company> findByEmail(String email);
+
+    boolean existsByCompNameOrEmail(String companyName, String companyEmail);
 }

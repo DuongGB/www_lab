@@ -50,9 +50,6 @@
             <a href="/" class="btn btn-primary">Back to Home</a>
         </div>
         <div class="col-auto">
-            <a href="/add-company" class="btn btn-success">Add a new Company</a>
-        </div>
-        <div class="col-auto">
             <form method="get" action="/searchCompanyByName">
                 <div class="input-group">
                     <input type="text" name="compName" class="form-control" placeholder="Search by name"/>
@@ -71,7 +68,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Web URL</th>
-            <th>Actions</th>
+<!--            <th>Actions</th>-->
         </tr>
         </thead>
         <tbody>
@@ -84,13 +81,13 @@
             <td th:text="${company.email}"></td>
             <td th:text="${company.phone}"></td>
             <td th:text="${company.webUrl}"></td>
-            <td>
-                <button class="btn btn-success"><a class="light" th:href="@{/edit/{id}(id=${company.id})}">Edit</a>
-                </button>
-                |
-                <button class="btn btn-danger"><a class="light" th:href="@{/delete/{id}(id=${company.id})}">Delete</a>
-                </button>
-            </td>
+<!--            <td>-->
+<!--                <button class="btn btn-success"><a class="light" th:href="@{/edit/{id}(id=${company.id})}">Edit</a>-->
+<!--                </button>-->
+<!--                |-->
+<!--                <button class="btn btn-danger"><a class="light" th:href="@{/delete/{id}(id=${company.id})}">Delete</a>-->
+<!--                </button>-->
+<!--            </td>-->
         </tr>
         </tbody>
     </table>

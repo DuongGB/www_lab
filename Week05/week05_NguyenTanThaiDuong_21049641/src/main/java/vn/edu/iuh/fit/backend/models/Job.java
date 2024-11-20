@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -23,6 +26,9 @@ public class Job {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company")
     private Company company;
+
+    @OneToMany(mappedBy = "job", fetch = FetchType.LAZY)
+    private List<JobSkill> jobSkills = new ArrayList<>();
 
     public Job() {
     }

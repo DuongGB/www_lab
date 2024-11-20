@@ -28,6 +28,7 @@ public class JobSkillService {
     public void save(JobSkill jobSkill) {
         jobSkillRepository.save(jobSkill);
     }
+
     public List<JobSkill> findByJob(Job job) {
         return jobSkillRepository.findByJob(job);
     }

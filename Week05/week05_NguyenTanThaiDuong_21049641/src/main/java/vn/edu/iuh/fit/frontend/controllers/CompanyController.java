@@ -51,20 +51,11 @@ public class CompanyController {
     }
 
     @GetMapping("/searchCompanyByName")
-    public String searchCompanyByNameContaining(Model model, @RequestParam("compName") String compName, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
-        int currentPage = page.orElse(1);
-        int pageSize = size.orElse(10);
-        List<Company> companies = companyService.findCompanyByCompNameContaining(compName, currentPage - 1, pageSize, "id", "asc");
+    public String searchCompanyByNameContaining(Model model, @RequestParam("compName") String compName) {
+        List<Company> companies = companyService.findCompanyByCompNameContaining(compName);
         model.addAttribute("companies", companies);
-
         Page<Company> companyPage = new PageImpl<>(companies);
         model.addAttribute("companyPage", companyPage);
-
-        int totalPages = (companyPage).getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
         return "companies/companies-paging";
     }
 }

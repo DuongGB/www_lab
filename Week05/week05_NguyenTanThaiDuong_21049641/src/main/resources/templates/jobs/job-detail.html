@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Job Details</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/9631/9631363.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        .container {
+            max-width: 800px;
+            margin-top: 40px;
+        }
+
+        .job-title {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        .company-name {
+            font-style: italic;
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        .skill-level {
+            font-weight: bold;
+            color: #28a745;
+            background-color: #eaf8e4;
+            border-radius: 4px;
+            padding: 3px 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .back-btn {
+            background-color: #f8f9fa;
+            color: #007bff;
+            border: 2px solid #007bff;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+        .list-group-item {
+            border: none;
+            border-radius: 10px;
+            background-color: #f1f3f5;
+            margin-bottom: 8px;
+            padding: 12px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .list-group-item:hover {
+            background-color: #e2e6ea;
+        }
+
+        .badge {
+            padding: 8px 12px;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center mb-4">Job Details</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <!-- Job Title -->
+            <h3 class="job-title mb-3" th:text="${job.getJobName()}">Job Name</h3>
+
+            <!-- Company Name -->
+            <p class="mb-2">
+                <strong>Company:</strong> <span class="company-name" th:text="${job.getCompany().getCompName()}">Company Name</span>
+            </p>
+
+            <!-- Job Description -->
+            <p><strong>Description:</strong></p>
+            <p class="text-muted" th:text="${job.getJobDesc()}">Job Description goes here.</p>
+
+            <!-- Required Skills -->
+            <h4 class="mt-4">Required Skills</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center" th:each="jobSkill : ${job.jobSkills}">
+                    <span th:text="${jobSkill.skill.getSkillName()}">Skill Name</span>
+                    <span class="badge bg-success skill-level" th:text="${jobSkill.getSkillLevel()}">Skill Level</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-4">
+        <a th:href="@{/jobs/recommendations}" class="back-btn">Back to Recommendations</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

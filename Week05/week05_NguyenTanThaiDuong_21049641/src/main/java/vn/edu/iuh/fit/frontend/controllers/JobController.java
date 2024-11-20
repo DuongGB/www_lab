@@ -77,8 +77,16 @@ public class JobController {
         }
     }
 
+    // Hiển thị chi tiết công việc với jobId
+    @GetMapping("/jobs/detail/{jobId}")
+    public String showJobDetail(@PathVariable Long jobId, Model model) {
+        Job job = jobService.findById(jobId);
+        model.addAttribute("job", job);
+        return "jobs/job-detail";
+    }
+
     // Hiển thị trang ứng tuyển công việc với jobId  và CandidateId
-    @GetMapping("/{jobId}/invite")
+    @GetMapping("jobs/{jobId}/invite")
     public String showCandidateForJob(@PathVariable Long jobId, Model model) {
         Job job = jobService.findById(jobId);
         List<Candidate> candidates = candidateService.findCandidatesForJob(job);
@@ -88,7 +96,7 @@ public class JobController {
     }
 
     // Mời ứng viên ứng tuyển vào công việc với jobId và CandidateId
-    @PostMapping("/{jobId}/invite/{CandidateId}")
+    @PostMapping("jobs/{jobId}/invite/{CandidateId}")
     public String inviteCandidate(@PathVariable Long jobId, @PathVariable Long CandidateId) {
         Candidate candidate = candidateService.findById(CandidateId);
         Job job = jobService.findById(jobId);

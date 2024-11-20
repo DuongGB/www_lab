@@ -87,7 +87,7 @@
             <div class="card h-100">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a th:href="@{/jobs/details/{id}(id=${job.getId()})}" th:text="${job.getJobName()}">Job Name</a>
+                        <a th:href="@{/jobs/detail/{id}(id=${job.getId()})}" th:text="${job.getJobName()}">Job Name</a>
                     </h5>
                     <p class="card-text" th:text="${job.getJobDesc()}">Job Description</p>
                     <p>

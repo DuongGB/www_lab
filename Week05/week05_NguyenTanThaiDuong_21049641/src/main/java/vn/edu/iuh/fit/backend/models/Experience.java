@@ -1,48 +1,7 @@
-/*
- * @ {#} Experience.java   1.0     11/20/2024
- *
- * Copyright (c) 2024 IUH. All rights reserved.
- */
-
 package vn.edu.iuh.fit.backend.models;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
 
-import java.time.LocalDate;
-
-/*
- * @description:
- * @author: Nguyen Tan Thai Duong
- * @date:   11/20/2024
- * @version:    1.0
- */
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "experience")
 public class Experience {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "exp_id")
-    private long id;
-    @Column(name = "company", nullable = false, length = 120)
-    private String companyName;
-    @Column(name = "from_date", nullable = false)
-    private LocalDate fromDate;
-    @Column(name = "to_date", nullable = false)
-    private LocalDate toDate;
-    @Column(name = "role", nullable = false, length = 100)
-    private String role;
-    @Column(name = "work_desc", nullable = false, length = 400)
-    private String workDescription;
-
-    //=============================RELATIONSHIPS====================
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "can_id")
-    private Candidate candidate;
-}
-
+  }

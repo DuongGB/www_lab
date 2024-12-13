@@ -1,52 +1,7 @@
 package vn.edu.iuh.fit.backend.models;
 
-import com.neovisionaries.i18n.CountryCode;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.Entity;
 
-@Getter
-@Setter
 @Entity
-@ToString
-@Table(name = "address")
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
-    @Column(name = "street", length = 150)
-    private String street;
-
-    @Column(name = "city", length = 50)
-    private String city;
-
-    @Column(name = "country")
-    private CountryCode country;
-
-    @Column(name = "number", length = 20)
-    private String number;
-
-    @Column(name = "zipcode", length = 7)
-    private String zipcode;
-
-    public Address() {
-
-    }
-
-    public Address(String number, String street, String city, String zipcode, CountryCode countryCode) {
-        this.number = number;
-        this.street = street;
-        this.city = city;
-        this.zipcode = zipcode;
-        this.country = countryCode;
-    }
-
-    public String getFullAddress() {
-        CountryCode country = this.country;
-        String countryName = (country != null) ? country.getName() : "Unknown Country";
-        return String.format("%s %s, %s, %s, %s", number, street, city, countryName, zipcode);
-    }
-}
+  }

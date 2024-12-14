@@ -43,7 +43,10 @@ giúp công ty tìm được người phù hợp với vị trí công việc.
 5. Gửi mail để ứng tuyển cho công việc
 6. Đề xuất kỹ năng gợi ý cần học
 7. Xem danh sách tất cả công việc đang tuyển dụng
-
+## Demo role Candidate
+[roleCandidate.mp4](./demo/roleCandidate.mp4)
+## Demo role Company
+[roleCompany.mp4](./demo/roleCompany.mp4)
 ### Giao diện
 
 #### Danh sách Candidate No Paging

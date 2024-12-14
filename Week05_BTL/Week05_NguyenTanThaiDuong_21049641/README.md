@@ -44,9 +44,9 @@ giúp công ty tìm được người phù hợp với vị trí công việc.
 6. Đề xuất kỹ năng gợi ý cần học
 7. Xem danh sách tất cả công việc đang tuyển dụng
 ## Demo role Candidate
-[roleCandidate.mp4](./demo/roleCandidate.mp4)
+https://github.com/user-attachments/assets/53c73d8b-7d06-4708-8963-e6e6fba867a8
 ## Demo role Company
-[roleCompany.mp4](./demo/roleCompany.mp4)
+https://github.com/user-attachments/assets/24ec657c-7738-475b-a33b-2b4d55d363cd
 ### Giao diện
 
 #### Danh sách Candidate No Paging

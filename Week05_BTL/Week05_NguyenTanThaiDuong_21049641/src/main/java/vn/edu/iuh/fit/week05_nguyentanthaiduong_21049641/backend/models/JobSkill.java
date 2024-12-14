@@ -6,13 +6,14 @@ import lombok.Setter;
 import vn.edu.iuh.fit.week05_nguyentanthaiduong_21049641.backend.converters.SkillLevelConverter;
 import vn.edu.iuh.fit.week05_nguyentanthaiduong_21049641.backend.enums.SkillLevel;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "job_skill")
-public class JobSkill {
+public class JobSkill implements Serializable {
     @EmbeddedId
     private JobSkillId id;
 
@@ -45,4 +46,5 @@ public class JobSkill {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }

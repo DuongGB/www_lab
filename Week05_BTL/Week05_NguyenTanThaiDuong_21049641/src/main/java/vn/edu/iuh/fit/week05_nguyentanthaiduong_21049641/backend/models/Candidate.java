@@ -20,11 +20,6 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id", nullable = false)
-    private User users;
-
     @Column(name = "dob", nullable = false)
     private LocalDate dob;
 

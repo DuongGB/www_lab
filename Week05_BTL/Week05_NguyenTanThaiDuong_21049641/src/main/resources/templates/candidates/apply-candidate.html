@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Job Application</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/9631/9631363.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F9F9F9;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+        }
+
+        .application-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .application-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .application-header h2 {
+            color: #2E4F13;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #395F18;
+        }
+
+        .details-section {
+            margin-bottom: 25px;
+        }
+
+        .details-section h4 {
+            font-size: 20px;
+            color: #395F18;
+            border-bottom: 2px solid #395F18;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .details-section p {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #395F18;
+        }
+
+        .btn-back, .btn-primary {
+            border-radius: 10px;
+            background-color: #395F18;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back {
+            background-color: #F9F9F9;
+            color: #395F18;
+            border: 1px solid #395F18;
+        }
+
+        .btn-back:hover {
+            background-color: #D1E8A8;
+        }
+
+        .btn-primary:hover {
+            background-color: #2E4F13;
+        }
+
+        .notification {
+            margin-bottom: 20px;
+        }
+
+        .notification.alert {
+            border-radius: 8px;
+        }
+
+        .form-textarea {
+            border-radius: 10px;
+            border: 1px solid #395F18;
+            height: 120px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Success or error messages -->
+    <div th:if="${successMessage}" class="alert alert-success notification" role="alert">
+        <span th:text="${successMessage}"></span>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger notification" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div class="application-container">
+        <!-- Header -->
+        <div class="application-header">
+            <h2>Job Application</h2>
+        </div>
+
+        <!-- Candidate Details -->
+        <div class="details-section">
+            <h4>Personal Information:</h4>
+            <p><span class="label">Name:</span> <span th:text="${candidate.fullName}"></span></p>
+            <p><span class="label">Email:</span> <span th:text="${candidate.email}"></span></p>
+            <p><span class="label">Phone:</span> <span th:text="${candidate.phone}"></span></p>
+            <p><span class="label">Date of Birth:</span> <span th:text="${candidate.dob}"></span></p>
+            <p><span class="label">Address:</span> <span th:text="${candidate.address.number}"></span>, <span th:text="${candidate.address.street}"></span>, <span th:text="${candidate.address.city}"></span>, <span th:text="${candidate.address.zipcode}"></span>, <span th:text="${candidate.address.country}"></span></p>
+        </div>
+
+        <!-- Skills -->
+        <div class="details-section">
+            <h4>Skills:</h4>
+            <ul>
+                <li th:each="skill : ${candidate.candidateSkills}">
+                    <span th:text="${skill.skill.skillName}"></span> - Level: <span th:text="${skill.skillLevel == 1 ? 'BEGINNER' :
+                        skill.skillLevel == 2 ? 'INTERMEDIATE' :
+                        skill.skillLevel == 3 ? 'ADVANCED' :
+                        skill.skillLevel == 4 ? 'PROFESSIONAL' :
+                        skill.skillLevel == 5 ? 'MASTER' : 'Unknown'}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Experience -->
+        <div class="details-section">
+            <h4>Experience:</h4>
+            <ul>
+                <li th:each="exp : ${candidate.experiences}">
+                    <strong th:text="${exp.company}"></strong> <span th:text="'(from ' + ${exp.fromDate} + ' to ' + ${exp.toDate} + ')'"></span><br>
+                    <span class="label">Role:</span> <span th:text="${exp.role}"></span><br>
+                    <span class="label">Description:</span> <span th:text="${exp.workDesc}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Application Form -->
+        <form th:action="@{send}" method="post">
+            <input type="hidden" name="jobId" th:value="${jobId}">
+            <input type="hidden" name="applicantName" th:value="${candidate.fullName}">
+            <input type="hidden" name="email" th:value="${candidate.email}">
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Message:</label>
+                <textarea class="form-control form-textarea" id="message" name="message" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Application</button>
+        </form>
+
+        <!-- Back Button -->
+        <a th:href="@{/jobs/detail/{id}(id=${job.id})}" class="btn btn-back mt-3">Back to Job Details</a>
+    </div>
+</div>
+</body>
+</html>

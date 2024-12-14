@@ -25,6 +25,7 @@ public interface CandidateService {
     public Candidate findById(Long id);
     public boolean existsByPhone(String phone);
     public boolean existsByEmail(String email);
+    public boolean existsByFullName(String fullName);
     public void save(Candidate candidate);
     public void update(Candidate candidate);
 

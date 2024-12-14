@@ -9,6 +9,7 @@ package vn.edu.iuh.fit.week05_nguyentanthaiduong_21049641.frontend.controllers;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,10 +55,10 @@ public class HomeController {
         Company company = companySerVice.findByEmail(email);
         if (candidate != null) {
             model.addAttribute("email", email);
-            return "redirect:/candidate";
+            return "redirect:candidate/recommendations";
         } else if (company != null) {
             model.addAttribute("email", email);
-            return "redirect:/company";
+            return "redirect:/company/jobs";
         } else {
             model.addAttribute("message", "Invalid email");
             return "redirect:/login";
@@ -81,7 +82,23 @@ public class HomeController {
             List<Integer> pageNum = IntStream.rangeClosed(1, totalPages)
                     .boxed()
                     .collect(Collectors.toList());
+            model.addAttribute("pageNum", pageNum);
         }
+        return "index";
+    }
+
+    @GetMapping("/search")
+    public String searchJobs(
+            @RequestParam(required = false) String search,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "12") int size,
+            Model model) {
+        Page<Job> jobPage = jobService.searchJobs(search, PageRequest.of(page, size));
+        model.addAttribute("jobPage", jobPage);
+        model.addAttribute("search", search);
+        model.addAttribute("pageNumbers", IntStream.rangeClosed(1, jobPage.getTotalPages())// tạo ra một chuỗi số từ 1 đến tổng số trang
+                .boxed() // chuyển từ IntStream sang Stream<Integer>
+                .collect(Collectors.toList())); // chuyển Stream<Integer> thành List<Integer>
         return "index";
     }
 }

@@ -75,6 +75,11 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
+    public boolean existsByFullName(String fullName) {
+        return candidateRepository.existsByFullName(fullName);
+    }
+
+    @Override
     public void save(Candidate candidate) {
         Address address = candidate.getAddress();
         if (address != null) {

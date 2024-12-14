@@ -27,7 +27,7 @@ public interface JobService {
 
     public Page<Job> searchJobs(String search, Pageable pageable);
 
-    public List<Job> serachJobs(String query, Long companyId);
+    public List<Job> searchJobs(String query, Long companyId);
 
     public Job findById(Long id);
 
@@ -35,6 +35,9 @@ public interface JobService {
 
     public void deleteById(Long id);
 
+    public List<Job> recommendJobsForCandidate(String email);
+
     public void sendApplication(String jobId, String appName, String email, String message, Job job, Candidate candidate) throws MessagingException;
+
 }
 

@@ -1,9 +1,11 @@
 package vn.edu.iuh.fit.week05_nguyentanthaiduong_21049641.backend.models;
 
+import com.neovisionaries.i18n.CountryCode;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vn.edu.iuh.fit.week05_nguyentanthaiduong_21049641.backend.converters.CountryCodeNumbericConverter;
 
 @Getter
 @Setter
@@ -22,8 +24,9 @@ public class Address {
     @Column(name = "city", length = 50)
     private String city;
 
+    @Convert(converter = CountryCodeNumbericConverter.class)
     @Column(name = "country")
-    private Integer country;
+    private CountryCode country;
 
     @Column(name = "number", length = 20)
     private String number;
@@ -31,7 +34,7 @@ public class Address {
     @Column(name = "zipcode", length = 7)
     private String zipcode;
 
-    public Address(String street, String city, Integer country, String number, String zipcode) {
+    public Address(String street, String city, CountryCode country, String number, String zipcode) {
         this.street = street;
         this.city = city;
         this.country = country;
@@ -45,7 +48,7 @@ public class Address {
                 this.street,
                 this.city,
                 this.zipcode,
-                this.country
+                this.country.getName()
         );
     }
 }

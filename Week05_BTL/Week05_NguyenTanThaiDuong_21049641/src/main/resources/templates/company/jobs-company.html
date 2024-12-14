@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Postings</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/9631/9631363.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F4F6F9;
+            color: #343A40;
+            font-family: 'Roboto', sans-serif;
+        }
+        .navbar-custom {
+            background-color: #007BFF;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-custom .nav-link {
+            color: white !important;
+        }
+        .navbar-custom .nav-link:hover {
+            color: #f0f8ff;
+        }
+        .navbar-custom .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .btn-primary {
+            background-color: #007BFF;
+            border-color: #007BFF;
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-warning {
+            background-color: #FFC107;
+            border-color: #FFC107;
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        .btn-danger {
+            background-color: #D9534F;
+            border-color: #D9534F;
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+        .btn-danger:hover {
+            background-color: #c12e2a;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            margin-bottom: 30px;
+        }
+        .card-header {
+            background-color: #F8F9FA;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+        }
+        .table {
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f3f5;
+        }
+        .table thead th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .alert-success {
+            background-color: #dff2d8;
+            color: #007BFF;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .alert-danger {
+            background-color: #fbdede;
+            color: #721c24;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .search-bar {
+            max-width: 800px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .search-bar input {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .actions-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .actions-buttons a,
+        .actions-buttons form button {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/company/jobs">Job Portal</a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Welcome, <span th:text="${company.getCompName()}">Company</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" th:href="@{/company/edit/{id}(id=${company.id})}">Edit Company</a></li>
+                    <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <form th:action="@{/jobs/search}" method="get" class="search-bar">
+        <input type="text" class="form-control" placeholder="Search by job name or skill name" name="query">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <h2 class="text-center mb-4">Job Postings</h2>
+
+    <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+    <div class="alert alert-danger" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+    <div class="alert alert-success" th:if="${message}" th:text="${message}"></div>
+
+    <div class="d-flex justify-content-center mb-4">
+        <a th:href="@{/company/newJob}" class="btn btn-primary">New Job Posting</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Available Job Listings</div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Job Name</th>
+                <th>Description</th>
+                <th>Company</th>
+                <th>Skills</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="job : ${jobPosts}">
+                <td th:text="${job.getJobName()}"></td>
+                <td th:text="${job.getJobDesc()}"></td>
+                <td th:text="${job.company.getCompName()}"></td>
+                <td>
+                    <ul>
+                        <li th:each="jobSkill : ${job.getJobSkills()}">
+                            <span th:text="${jobSkill.skill.getSkillName()}"></span>
+                            (<span th:text="${jobSkill.getSkillLevel()}"></span>)
+                        </li>
+                    </ul>
+                </td>
+                <td class="actions-buttons">
+                    <a th:href="@{'/jobs/' + ${job.getId()} + '/find'}" class="btn btn-primary">Find candidates</a>
+                    <a th:href="@{'/jobs/' + ${job.getId()} + '/edit'}" class="btn btn-warning">Edit</a>
+                    <form th:action="@{'/company/' + ${job.getId()} + '/delete'}" method="post" style="display: inline">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this job?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

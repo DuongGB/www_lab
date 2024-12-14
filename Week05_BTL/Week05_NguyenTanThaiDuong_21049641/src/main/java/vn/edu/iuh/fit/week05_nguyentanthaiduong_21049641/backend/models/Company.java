@@ -14,11 +14,6 @@ public class Company {
     @Column(name = "comp_id", nullable = false)
     private Long id;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "comp_id", nullable = false)
-    private User users;
-
     @Column(name = "about", length = 2000)
     private String about;
 

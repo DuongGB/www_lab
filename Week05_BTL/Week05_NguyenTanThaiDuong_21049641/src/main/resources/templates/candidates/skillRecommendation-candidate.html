@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Suggested Skills</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/9631/9631363.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7fa; /* Màu nền sáng và sạch sẽ */
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 60px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4A90E2; /* Màu chính */
+            font-weight: bold;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+
+        .list-group-item {
+            background: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-group-item h5 {
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .list-group-item p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .badge {
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #4A90E2; /* Màu cho badge */
+            color: white;
+        }
+
+        .no-skills {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            font-size: 16px;
+            color: white;
+            background-color: #4A90E2; /* Nút màu chính */
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #357ABD; /* Tông màu tối hơn khi hover */
+        }
+
+        .back-btn i {
+            margin-right: 10px;
+        }
+
+        .skill-icon {
+            font-size: 28px;
+            color: #4A90E2;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>
+        <i class="fas fa-star"></i> Skill Recommendations
+    </h2>
+
+    <!-- Kiểm tra danh sách có kỹ năng đề xuất hay không -->
+    <div class="no-skills" th:if="${#lists.isEmpty(recommendedSkills)}">
+        <i class="fas fa-exclamation-circle"></i> No skills recommended.
+    </div>
+
+    <!-- Danh sách kỹ năng được đề xuất -->
+    <div th:if="${!#lists.isEmpty(recommendedSkills)}">
+        <div class="list-group">
+            <div th:each="skill : ${recommendedSkills}" class="list-group-item">
+                <div style="display: flex; align-items: center;">
+                    <i class="fas fa-check-circle skill-icon"></i>
+                    <div>
+                        <h5 th:text="${skill.skillName}">Skill Name</h5>
+                        <p th:text="${skill.skillDescription}">Skill Description</p>
+                    </div>
+                </div>
+                <span class="badge" th:text="${skill.type}">Skill Type</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a th:href="@{/candidate/recommendations}" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+</html>

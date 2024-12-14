@@ -58,7 +58,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public List<Job> serachJobs(String query, Long companyId) {
+    public List<Job> searchJobs(String query, Long companyId) {
         return jobRepository.searchByJobNameOrSkillName(query, companyId);
     }
 
@@ -75,6 +75,11 @@ public class JobServiceImpl implements JobService {
     @Override
     public void deleteById(Long id) {
         jobRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Job> recommendJobsForCandidate(String email) {
+        return jobRepository.findRecommendedJobsForCandidate(email);
     }
 
     @Override

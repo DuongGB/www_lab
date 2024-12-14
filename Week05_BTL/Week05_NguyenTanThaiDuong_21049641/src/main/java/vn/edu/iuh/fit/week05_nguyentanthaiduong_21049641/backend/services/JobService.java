@@ -37,6 +37,8 @@ public interface JobService {
 
     public List<Job> recommendJobsForCandidate(String email);
 
+    public List<Job> findByJobNameContaining(String jobName);
+
     public void sendApplication(String jobId, String appName, String email, String message, Job job, Candidate candidate) throws MessagingException;
 
 }

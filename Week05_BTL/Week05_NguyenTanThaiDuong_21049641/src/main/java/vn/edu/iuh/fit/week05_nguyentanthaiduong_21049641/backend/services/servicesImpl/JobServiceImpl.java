@@ -83,6 +83,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    public List<Job> findByJobNameContaining(String jobName) {
+        return jobRepository.findByJobNameContaining(jobName);
+    }
+
+    @Override
     public void sendApplication(String jobId, String appName, String email, String message, Job job, Candidate candidate) throws MessagingException {
         // get email of company
         String companyEmail = job.getCompany().getEmail();

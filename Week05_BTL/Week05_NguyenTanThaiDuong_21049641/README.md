@@ -1,4 +1,12 @@
-#DỰ ÁN: WEB TUYỂN DỤNG VIỆC LÀM
+# DỰ ÁN: WEB TUYỂN DỤNG VIỆC LÀM
+
+- Link report word và presentation: https://drive.google.com/drive/u/0/folders/1i_2Q-yDOATkNWCyhemZmD3e6ltGHimE-
+
+# Tác giả:
+
+- Nguyễn Tấn Thái Dương
+- MSSV: 21049641
+- Giảng viên hướng dẫn: Võ Văn Hải
 
 ## Giới thiệu trang web
 
@@ -34,6 +42,7 @@ giúp công ty tìm được người phù hợp với vị trí công việc.
 4. Chỉnh sửa thông tin ứng viên
 5. Gửi mail để ứng tuyển cho công việc
 6. Đề xuất kỹ năng gợi ý cần học
+7. Xem danh sách tất cả công việc đang tuyển dụng
 
 ### Giao diện
 
@@ -71,6 +80,12 @@ giúp công ty tìm được người phù hợp với vị trí công việc.
   sửa thông tin cá nhân cũng như xem kỹ năng đề xuất
   ![candidate-jobRecommandation.png](./img/candidate-jobRecommandation.png)
 
+#### Trang xem danh sách tất cả các công việc đang tuyển dụng
+
+- Hiển thị trang xem danh sách tất cả các công việc đang tuyển dụng, cho phép ứng viên xem thông công việc
+
+![candidate-listJob.png](./img/candidate-listJob.png)
+
 #### Trang chỉnh sửa thông tin của Candidate
 
 - Hiển thị trang chỉnh sửa thông tin của Candidate, cho phép ứng viên chỉnh sửa thông tin cá nhân
@@ -89,7 +104,7 @@ giúp công ty tìm được người phù hợp với vị trí công việc.
 #### Trang ứng tuyển vào công việc
 
 - Hiển thị thông tin và chi tiết đơn ứng tuyển để gửi email đến nhà tuyển dụng
-  ![job-apply.png](img%2Fjob-apply.png)
+  ![job-apply.png](./img/job-apply.png)
 
 #### Trang chủ của Company
 
@@ -112,14 +127,8 @@ giúp công ty tìm được người phù hợp với vị trí công việc.
 - Hiển thị danh sách Candidate phù hợp cho công việc, cho phép nhà tuyển dụng mời ứng viên
   ![company-findCandidate.png](./img/company-findCandidate.png)
 
-#### Trang thêm mới công việc tuyển dụng
+#### Trang đăng tuyển thông tin tuyển
 
 - Hiển thị trang thêm mới công việc, cho phép nhà tuyển dụng đăng bài tuyển dụng mới
 
 ![company-addJob.png](./img/company-addJob.png)
-
-#### Tác giả:
-
-- Nguyễn Tấn Thái Dương
-- MSSV: 21049641
-- Giảng viên hướng dẫn: Võ Văn Hải

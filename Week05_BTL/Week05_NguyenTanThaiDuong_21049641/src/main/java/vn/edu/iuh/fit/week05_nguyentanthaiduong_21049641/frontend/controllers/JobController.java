@@ -8,6 +8,8 @@ package vn.edu.iuh.fit.week05_nguyentanthaiduong_21049641.frontend.controllers;
 
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,9 @@ import vn.edu.iuh.fit.week05_nguyentanthaiduong_21049641.backend.services.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /*
  * @description:
@@ -43,6 +47,29 @@ public class JobController {
     private CandidateService candidateService;
     @Autowired
     private EmailService emailService;
+
+    @GetMapping("/list-job")
+    public String showJobListPaging(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(10);
+        Page<Job> jobPage = jobService.findAll(currentPage - 1, pageSize, "id", "asc");
+        model.addAttribute("jobPage", jobPage);
+        int totalPages = (jobPage).getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+        return "candidates/listJob-candidate";
+    }
+
+    @GetMapping("/searchJobByJobName")
+    public String searchByJobName(Model model, @RequestParam("jobName") String jobName) {
+        List<Job> jobs = jobService.findByJobNameContaining(jobName);
+        model.addAttribute("jobs", jobs);
+        Page<Job> jobPage = new PageImpl<>(jobs);
+        model.addAttribute("jobPage", jobPage);
+        return "candidates/listJob-candidate";
+    }
 
     @GetMapping("/{id}/edit")
     private String editJob(@PathVariable("id") Long id, Model model) {

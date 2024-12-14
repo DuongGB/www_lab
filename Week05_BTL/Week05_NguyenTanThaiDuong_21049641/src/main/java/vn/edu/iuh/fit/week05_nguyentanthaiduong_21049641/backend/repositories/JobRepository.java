@@ -40,5 +40,7 @@ public interface JobRepository extends JpaRepository<Job, Long> {
 
     Page<Job> findByJobNameContainingIgnoreCaseOrCompany_CompNameContainingIgnoreCaseOrJobSkills_Skill_SkillNameContainingIgnoreCase(
             String jobName, String companyName, String skillName, Pageable pageable);
+
+    List<Job> findByJobNameContaining(String jobName);
 }
 

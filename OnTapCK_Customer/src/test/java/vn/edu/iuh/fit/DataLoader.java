@@ -6,9 +6,12 @@
 
 package vn.edu.iuh.fit;
 
+import net.datafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import vn.edu.iuh.fit.backend.entities.Account;
+import vn.edu.iuh.fit.backend.entities.Customer;
 import vn.edu.iuh.fit.backend.repositories.AccountRepository;
 import vn.edu.iuh.fit.backend.repositories.CustomerRepository;
 
@@ -27,12 +30,17 @@ public class DataLoader {
 
     @Test
     public void GenerateCustomer() {
-        System.out.println("Generate Candidate");
+        Faker faker = new Faker();
+        for (int i = 0; i < 10; i++) {
+            Customer customer = new Customer();
+            customer.setCustName(faker.name().fullName());
+
+        }
     }
 
     @Test
     void GenerateAccount() {
-        System.out.println("Generate Account");
+
     }
 }
 

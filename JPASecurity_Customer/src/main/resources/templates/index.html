@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<a th:href="@{/customers}">Danh sach customer</a>
+<a th:href="@{/showReport1}">Danh sach account theo balance</a>
+<a th:href="@{/report2/customers/by-year-dob}">Danh sach customer theo nam 2000</a>
+<form th:action="@{/logout}" method="POST">
+    <button type="submit">Logout</button>
+</form>
+<p th:unless="${#authorization.expression('isAuthenticated()')}">Dang nhap</p>
+
+</body>
+</html>

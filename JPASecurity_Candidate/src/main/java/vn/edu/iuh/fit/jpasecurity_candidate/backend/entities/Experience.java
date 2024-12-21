@@ -4,13 +4,14 @@
  * Copyright (c) 2024 IUH. All rights reserved.
  */
 
-package vn.edu.iuh.fit.jpasecurity_candidate.backend.models;
+package vn.edu.iuh.fit.jpasecurity_candidate.backend.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vn.edu.iuh.fit.jpasecurity_candidate.backend.enums.Role;
 
 import java.time.LocalDate;
 

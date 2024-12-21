@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div>
+    <h1>LOGIN</h1>
+    <form method="post" th:action="@{/login}">
+        <label for="username">UserName: </label>
+        <input name="username" id="username" type="text" placeholder="Enter username"/>
+        <br>
+        <label for="password">Password: </label>
+        <input name="password" id="password" type="password" placeholder="Enter password"/>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+    <a th:href="@{/admin/dashboard}">List</a>
+</div>
+</body>
+</html>

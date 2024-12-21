@@ -4,8 +4,9 @@
  * Copyright (c) 2024 IUH. All rights reserved.
  */
 
-package vn.edu.iuh.fit.jpasecurity_candidate.backend.models;
+package vn.edu.iuh.fit.jpasecurity_candidate.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class Candidate {
     @Column(name = "full_name")
     private String fullName;
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Experience> experiences;
 }
 

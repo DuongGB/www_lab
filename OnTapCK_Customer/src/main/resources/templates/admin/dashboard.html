@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DASHBOARD</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<div>
+    <h1>Dashboard</h1>
+    <form>
+        <input type="text" name="search"/>
+    </form>
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+    <div th:if="${error}">
+        <span  th:text="${error}"></span>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>DOB</td>
+            <td>Email</td>
+            <td>Address</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer: ${customers.values}">
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.custName}"></td>
+            <td th:text="${customer.custDob}"></td>
+            <td th:text="${customer.custEmail}"></td>
+            <td th:text="${customer.custAddress}"></td>
+            <td><a th:href="@{/admin/formEdit/{id}(id=${customer.id})}">Edit</a></td>
+            <td>
+                <form th:action="@{/admin/delete/{id}(id=${customer.id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this customer?')">
+                    <input type="hidden" name="_method" value="DELETE"/> <!-- Fake DELETE method -->
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+<!--        <span>Page: <span th:text="${customers.page + 1}">1</span> of <span th:text="${customers.totalPages}">1</span></span>-->
+        <div>
+            <!-- Hiển thị các liên kết cho từng trang -->
+            <span th:each="pageNum : ${#numbers.sequence(0, customers.totalPages - 1)}">
+                <a th:href="@{/admin/dashboard(pageNo=${pageNum}, pageSize=${customers.size})}"
+                   th:text="${pageNum + 1}"
+                   th:classappend="${pageNum == customers.page} ? 'active' : ''"></a>
+            </span>
+        </div>
+    </div>
+    <a th:href="@{/admin/formAdd}">Add</a>
+    <a th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>

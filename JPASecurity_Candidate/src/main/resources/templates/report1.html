@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Báo Cáo 1</title>
+</head>
+<body>
+<h1>Báo Cáo 1: Ứng Viên Developer Tại Công Ty</h1>
+<form th:action="@{/report1}" method="get">
+    <label for="companyName">Tên Công Ty:</label>
+    <input type="text" id="companyName" name="companyName" />
+    <button type="submit">Tìm Kiếm</button>
+</form>
+<h2>Kết Quả</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Tên</th>
+        <th>Email</th>
+        <th>Số Điện Thoại</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="candidate : ${candidates}">
+        <td th:text="${candidate.fullName}"></td>
+        <td th:text="${candidate.email}"></td>
+        <td th:text="${candidate.phone}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

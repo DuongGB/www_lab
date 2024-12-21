@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chi Tiết Ứng Viên</title>
+</head>
+<body>
+<h1>Chi Tiết Ứng Viên</h1>
+<!-- Hiển thị thông tin ứng viên -->
+<div>
+    <h2>Tên: <span th:text="${candidate.fullName}"></span></h2>
+    <p>Email: <span th:text="${candidate.email}"></span></p>
+    <p>Số Điện Thoại: <span th:text="${candidate.phone}"></span></p>
+</div>
+
+<h3>Kinh Nghiệm Làm Việc</h3>
+<!-- Hiển thị các kinh nghiệm làm việc của ứng viên -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>Công Ty</th>
+        <th>Vai Trò</th>
+        <th>Mô Tả Công Việc</th>
+        <th>Thời Gian Làm Việc</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="experience : ${candidate.experiences}">
+        <td th:text="${experience.companyName}"></td>
+        <td th:text="${experience.role}"></td>
+        <td th:text="${experience.workDescription}"></td>
+        <td th:text="${experience.fromDate} + ' - ' + ${experience.toDate}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Thêm liên kết quay lại danh sách ứng viên -->
+<p><a th:href="@{/candidates}">Quay lại danh sách ứng viên</a></p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trang Chủ</title>
+</head>
+<body>
+<h1>Chào mừng đến với hệ thống quản lý ứng viên</h1>
+
+<!-- Thông tin người dùng hiện tại -->
+<div>
+    <p>Xin chào, <span th:text="${#authentication.name}">Người dùng</span>!</p>
+</div>
+
+<!-- Nút Log Out -->
+<form th:action="@{/logout}" method="post" style="display:inline;">
+    <button type="submit">Đăng Xuất</button>
+</form>
+
+<h2>Các Liên Kết:</h2>
+<ul>
+    <li><a th:href="@{/candidates}">Danh Sách Ứng Viên</a></li>
+    <li><a th:href="@{/report1}">Báo Cáo 1 - Ứng Viên Developer ở Công Ty</a></li>
+    <li><a th:href="@{/report2}">Báo Cáo 2 - Ứng Viên Có Ít Nhất 5 Năm Kinh Nghiệm</a></li>
+</ul>
+</body>
+</html>

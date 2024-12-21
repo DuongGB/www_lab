@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh Sách Ứng Viên</title>
+</head>
+<body>
+<h1>Danh Sách Ứng Viên</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Tên</th>
+        <th>Email</th>
+        <th>Số Điện Thoại</th>
+        <th>Hành Động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="candidate : ${candidates}">
+        <td th:text="${candidate.fullName}"></td>
+        <td th:text="${candidate.email}"></td>
+        <td th:text="${candidate.phone}"></td>
+        <td>
+            <a th:href="@{/can_detail(id=${candidate.id})}">Chi Tiết</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

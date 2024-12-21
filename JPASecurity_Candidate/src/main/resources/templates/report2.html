@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Báo Cáo 2 - Ứng Viên Có Ít Nhất 5 Năm Kinh Nghiệm</title>
+</head>
+<body>
+<h1>Báo Cáo 2 - Danh Sách Ứng Viên Có Ít Nhất 5 Năm Kinh Nghiệm</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Tên</th>
+        <th>Email</th>
+        <th>Số Điện Thoại</th>
+        <th>Kinh Nghiệm (Năm)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="candidate : ${candidates}">
+        <td th:text="${candidate[0]}">Tên Ứng Viên</td>
+        <td th:text="${candidate[1]}">Email</td>
+        <td th:text="${candidate[2]}">Số Điện Thoại</td>
+        <td th:text="${candidate[3]}">Số Năm Kinh Nghiệm</td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a th:href="@{/index}">Quay Lại Trang Chủ</a>
+</body>
+</html>
